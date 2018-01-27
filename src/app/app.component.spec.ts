@@ -1,11 +1,23 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PostService } from './service/post.service';
+import { PostInterfaceToken } from './interface/injection.token';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      imports: [
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        {provide: PostInterfaceToken, useClass: PostService}
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
