@@ -15,10 +15,9 @@ export class PostService implements PostInterface {
    * Add new post
    * @param {Post} post
    */
-  addPost(post: Post): void {
-    this.httpClient
-      .post<Post>(`${environment.apiServer}/posts`, post)
-      .subscribe();
+  addPost(post: Post): Observable<Post> {
+    return this.httpClient
+      .post<Post>(`${environment.apiServer}/posts`, post);
   }
 
   /**

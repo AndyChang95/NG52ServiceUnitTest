@@ -10,7 +10,8 @@ import { PostInterfaceToken } from './interface/injection.token';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string;
+  title = 'app';
+  post: string;
   posts$: Observable<Post[]> = this.postService.listPosts$();
 
   constructor(@Inject(PostInterfaceToken) private postService: PostInterface) {
@@ -21,11 +22,12 @@ export class AppComponent {
    */
   onAddPostClick() {
     const post: Post = {
-      'title' : this.title,
+      'title' : this.post,
       'author' : 'Sam'
     };
 
-    this.postService.addPost(post);
+    this.postService.addPost(post)
+      .subscribe();
   }
 
   /**
